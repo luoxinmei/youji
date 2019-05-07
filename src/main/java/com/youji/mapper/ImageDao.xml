@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youji.dao.IImageDao">
+    <resultMap id="BaseResultMap" type="com.youji.pojo.Image">
+        <id column="image_id" jdbcType="INTEGER" property="imageId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="image_name" jdbcType="VARCHAR" property="imageName"/>
+        <result column="image_src" jdbcType="VARCHAR" property="imageSrc"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="attraction_id" jdbcType="INTEGER" property="attractionId"/>
+        <result column="longitude" jdbcType="DECIMAL" property="longitude"/>
+        <result column="latitude" jdbcType="DECIMAL" property="latitude"/>
+        <result column="number_of_likes" jdbcType="INTEGER" property="numberOfLikes"/>
+        <result column="sharing" jdbcType="INTEGER" property="sharing"/>
+        <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
+    </resultMap>
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select * from image where  user_id =# {userId,jdbcType=VARCHAR}
+    </select>
+    <insert id="save" parameterType="com.youji.pojo.Image">
+        insert into image  (user_id,image_name,image_src,description,attraction_id,
+        longitude,latitude,number_of_likes,sharing,add_time)
+        values (#{userId},#{imageName},#{imageSrc},#{description},
+        #{attractionId},#{longitude},#{latitude},numberOfLikes,sharing,addTime)
+    </insert>
+    <delete id="deleteById" parameterType="map">
+        delete from image where image_id=#{imageId}
+    </delete>
+    <delete id="deleteByUserId" parameterType="map">
+        delete from image where user_id=#{userId}
+    </delete>
+</mapper>

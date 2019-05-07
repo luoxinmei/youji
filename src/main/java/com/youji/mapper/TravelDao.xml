@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youji.dao.ITravelDao">
+  <resultMap id="BaseResultMap" type="com.youji.pojo.Travel">
+    <id column="travel_id" jdbcType="INTEGER" property="travelId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="attraction_id" jdbcType="INTEGER" property="attractionId" />
+    <result column="longitude" jdbcType="DECIMAL" property="longitude" />
+    <result column="latitude" jdbcType="DECIMAL" property="latitude" />
+    <result column="number_of_likes" jdbcType="INTEGER" property="numberOfLikes" />
+    <result column="sharing" jdbcType="INTEGER" property="sharing" />
+    <result column="add_time" jdbcType="TIMESTAMP" property="addTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.youji.pojo.Travel">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+
+</mapper>

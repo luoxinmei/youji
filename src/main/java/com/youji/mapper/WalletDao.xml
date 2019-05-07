@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.youji.dao.IWalletDao">
+  <resultMap id="BaseResultMap" type="com.youji.pojo.Wallet">
+    <id column="wallet_id" jdbcType="INTEGER" property="walletId" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+  </resultMap>
+  <!--<sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    wallet_id, user_id, balance
+  </sql>
+  <select id="selectByExample" parameterType="com.youji.pojo.WalletExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from wallet
+    where wallet_id = #{walletId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from wallet
+    where wallet_id = #{walletId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.youji.pojo.WalletExample">
+    delete from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.youji.pojo.Wallet">
+    insert into wallet (wallet_id, user_id, balance
+      )
+    values (#{walletId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{balance,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.youji.pojo.Wallet">
+    insert into wallet
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="walletId != null">
+        wallet_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="walletId != null">
+        #{walletId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.youji.pojo.WalletExample" resultType="java.lang.Long">
+    select count(*) from wallet
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update wallet
+    <set>
+      <if test="record.walletId != null">
+        wallet_id = #{record.walletId,jdbcType=INTEGER},
+      </if>
+      <if test="record.userId != null">
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.balance != null">
+        balance = #{record.balance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update wallet
+    set wallet_id = #{record.walletId,jdbcType=INTEGER},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      balance = #{record.balance,jdbcType=DECIMAL}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.youji.pojo.Wallet">
+    update wallet
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where wallet_id = #{walletId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.youji.pojo.Wallet">
+    update wallet
+    set user_id = #{userId,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL}
+    where wallet_id = #{walletId,jdbcType=INTEGER}
+  </update>-->
+</mapper>
