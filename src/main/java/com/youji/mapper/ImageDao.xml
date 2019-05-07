@@ -21,7 +21,7 @@
         insert into image  (user_id,image_name,image_src,description,attraction_id,
         longitude,latitude,number_of_likes,sharing,add_time)
         values (#{userId},#{imageName},#{imageSrc},#{description},
-        #{attractionId},#{longitude},#{latitude},numberOfLikes,sharing,addTime)
+        #{attractionId},#{longitude},#{latitude},#{numberOfLikes},#{sharing},#{addTime})
     </insert>
     <delete id="deleteById" parameterType="map">
         delete from image where image_id=#{imageId}
