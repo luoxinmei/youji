@@ -25,7 +25,7 @@ public class ImageServiceImpl implements IImageService {
         List<Image> images = dao.selectByUserId(userId);
         for (Image image : images) {
             String imageName = image.getImageName();
-            String filePath = "E:/upload/" +  imageName;
+            String filePath = "D:/img/" +  imageName;
             File file = new File(filePath);
             if (file.exists()) {
                 file.delete();

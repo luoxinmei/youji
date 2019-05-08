@@ -14,8 +14,8 @@
         <result column="sharing" jdbcType="INTEGER" property="sharing"/>
         <result column="add_time" jdbcType="TIMESTAMP" property="addTime"/>
     </resultMap>
-    <select id="selectByUserId" resultMap="BaseResultMap">
-        select * from image where  user_id =# {userId,jdbcType=VARCHAR}
+    <select id="selectByUserId" resultMap="BaseResultMap" parameterType="map">
+        select * from image where  user_id =#{userId,jdbcType=VARCHAR}
     </select>
     <insert id="save" parameterType="com.youji.pojo.Image">
         insert into image  (user_id,image_name,image_src,description,attraction_id,
